@@ -13,10 +13,11 @@ Function New-BuildReviewCollector {
 	        try
 	        {
 	        	(New-Object System.Net.webclient).DownloadFile($url,$CabFile)
+				Move-Item -Path $CabFile -Destination $(Join-Path ($env:SYSTEMDRIVE) 'wsusscn2.cab')
 	        }
 	        catch
 	        {
-	        		[system.windows.forms.messagebox]::Show("Unable to download the required files for missing Windows Update checks. Please download from 'http://download.windowsupdate.com/microsoftupdate/v6/wsusscan/wsusscn2.cab' and save to '$CabFile'.",'Build Review',0,16)
+	        		Write-Host "Unable to download the required files for missing Windows Update checks. Please download from 'http://download.windowsupdate.com/microsoftupdate/v6/wsusscan/wsusscn2.cab' and save to '$CabFile'."
 	        		exit
 	        }
 	    }
@@ -50,7 +51,9 @@ $(Get-Content $BuildReviewRoot\Collection_Functions\Invoke-BuildReview.tpl | Out
 	{
 		$File = (Join-Path ($env:USERPROFILE) 'BuildReview.ps1')
 		$Collector | Out-File $File
-		Write-Host "File saved to $File"
+		Write-Host "BuildReview.ps1 file saved to $File"
+		Write-Host "Moving wsusscn2.cab to Root drive folder"
+		Write-Host "wsusscn2.cab file saved to $(Join-Path ($env:SYSTEMDRIE) 'wsusscn2.cab')"
 		Write-Host "Finished!" -ForegroundColor Green
 	}
 
