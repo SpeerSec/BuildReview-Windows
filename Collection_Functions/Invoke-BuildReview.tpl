@@ -6,7 +6,7 @@
 	$IsAdmin = (New-Object Security.Principal.WindowsPrincipal ([Security.Principal.WindowsIdentity]::GetCurrent())).IsInRole([Security.Principal.WindowsBuiltinRole]::Administrator)
 	if(-not $IsAdmin)
 	{
-		[system.windows.forms.messagebox]::Show('This needs to be run as administrator, please right click and select "run as administrator".','Build Review',0,16)
+		Write-Host "This needs to be run as administrator, please make sure the session is 'run as administrator'"
 		exit
 	}
 
@@ -33,7 +33,8 @@
 	        }
 	        catch
 	        {
-	        		[system.windows.forms.messagebox]::Show("Unable to download the required files for missing Windows Update checks. Please download from 'http://download.windowsupdate.com/microsoftupdate/v6/wsusscan/wsusscn2.cab' and save to '$CabFile'.",'Build Review',0,16)
+	        		Write-Host "Unable to download the required files for missing Windows Update checks."
+					Write-Host "Please download from 'http://download.windowsupdate.com/microsoftupdate/v6/wsusscan/wsusscn2.cab' and save to '$CabFile'."
 	        		exit
 	        }
 	    }
@@ -58,10 +59,11 @@
 	$DesktopPath = [Environment]::GetFolderPath("Desktop")
 	$SaveResultTo = Join-Path $DesktopPath "$($SYSInfo.DNSHostName)_$((Get-Date).ToString('dd-MM-yyyy_HH-mm')).xml"
 
-	$StartCollection = [system.windows.forms.messagebox]::Show('The Build Review tool will now start. Do you want to continue?','Build Review',4,32)
-	if($StartCollection -ne 6)
-	{
-		exit
+	$confirmation = Read-Host -Prompt "The Build Review tool will now start. Do you want to continue? (Type 'Y' for Yes or 'N' for No)"
+	if ($confirmation -ne 'Y') {
+    	Write-Host "Exiting script."
+		
+    	exit
 	}
 
 #Checks
@@ -179,5 +181,12 @@ $Config.AppendChild($XMLResults) | Out-Null
 # Save output
 $SaveResultTo = $ExecutionContext.SessionState.Path.GetUnresolvedProviderPathFromPSPath($SaveResultTo)
 $Policy.Save($SaveResultTo)
+$confirmation-HTML = Read-Host -Prompt "Do you want to generate the report HTML file now? (Type 'Y' for Yes or 'N' for No)"
+	if ($confirmation-HTML -eq 'Y') {
+    	Write-Host "Script Completed!"
+	Write-Host "Results have been saved to '$SaveResultTo'"
+	Write-Host "Exporting results as a html file..."
+	Export-AsHTML -InputFolder C:\Results\
+    	exit
+	}
 
-[system.windows.forms.messagebox]::Show("Completed!`nResults have been saved to '$SaveResultTo'",'Build Review',0,64)
