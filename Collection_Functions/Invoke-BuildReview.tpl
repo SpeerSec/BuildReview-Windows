@@ -181,12 +181,8 @@ $Config.AppendChild($XMLResults) | Out-Null
 # Save output
 $SaveResultTo = $ExecutionContext.SessionState.Path.GetUnresolvedProviderPathFromPSPath($SaveResultTo)
 $Policy.Save($SaveResultTo)
-$confirmation-HTML = Read-Host -Prompt "Do you want to generate the report HTML file now? (Type 'Y' for Yes or 'N' for No)"
-	if ($confirmation-HTML -eq 'Y') {
-    	Write-Host "Script Completed!"
-	Write-Host "Results have been saved to '$SaveResultTo'"
-	Write-Host "Exporting results as a html file..."
-	Export-AsHTML -InputFolder C:\Results\
-    	exit
-	}
+Write-Host "Script Completed!"
+Write-Host "Results have been saved to '$SaveResultTo'"
+Write-Host "Exporting results as a html file..."
+Export-AsHTML -InputFolder C:\Results\
 
