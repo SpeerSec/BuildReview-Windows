@@ -174,6 +174,7 @@ $Config.AppendChild($XMLResults) | Out-Null
 # Save output
 $SaveResultTo = $ExecutionContext.SessionState.Path.GetUnresolvedProviderPathFromPSPath($SaveResultTo)
 $Policy.Save($SaveResultTo)
+Net-Item -Path "C:\Results\" -ItemType Directory
 Write-Host "Script Completed!"
 Write-Host "Results have been saved to '$SaveResultTo'"
 Write-Host "Exporting results as a html file..."
