@@ -53,7 +53,7 @@ $(Get-Content $BuildReviewRoot\Collection_Functions\Invoke-BuildReview.tpl | Out
 		$Collector | Out-File $File
 		Write-Host "BuildReview.ps1 file saved to $File"
 		Write-Host "Moving wsusscn2.cab to Root drive folder"
-		Write-Host "wsusscn2.cab file saved to $(Join-Path ($env:SYSTEMDRIE) 'wsusscn2.cab')"
+		Write-Host "wsusscn2.cab file saved to $(Join-Path ($env:SYSTEMDRIVE) 'wsusscn2.cab')"
 		Write-Host "Finished!" -ForegroundColor Green
 	}
 
