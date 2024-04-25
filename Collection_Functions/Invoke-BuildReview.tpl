@@ -1,7 +1,7 @@
 #region Start Build Review
 	#load windows forms for output
 	[System.Reflection.Assembly]::LoadWithPartialName("System.Windows.Forms") | Out-Null
-
+	Write-Host "This message confirms the script has started."
 	# Check for admin rights
 	$IsAdmin = (New-Object Security.Principal.WindowsPrincipal ([Security.Principal.WindowsIdentity]::GetCurrent())).IsInRole([Security.Principal.WindowsBuiltinRole]::Administrator)
 	if(-not $IsAdmin)
