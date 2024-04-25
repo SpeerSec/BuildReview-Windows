@@ -59,13 +59,6 @@
 	$DesktopPath = [Environment]::GetFolderPath("Desktop")
 	$SaveResultTo = Join-Path $DesktopPath "$($SYSInfo.DNSHostName)_$((Get-Date).ToString('dd-MM-yyyy_HH-mm')).xml"
 
-	$confirmation = Read-Host -Prompt "The Build Review tool will now start. Do you want to continue? (Type 'Y' for Yes or 'N' for No)"
-	if ($confirmation -ne 'Y') {
-    	Write-Host "Exiting script."
-		
-    	exit
-	}
-
 #Checks
 
 	$CollectionsCount = @($Config.Collection).Count
