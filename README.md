@@ -41,8 +41,11 @@ In the meantime ensure you read the raw XML results file generated as you will s
 In Scope:
 * Windows 2012 R2 (works best)
 * Windows 2008 R2
+* Windows 2022
+* Windows 2019
 * Windows 2016
 * Windows 8.1
+* Windows 11
 * Windows 10
 * Windows 7
 
