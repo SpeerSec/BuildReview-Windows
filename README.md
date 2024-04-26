@@ -24,8 +24,9 @@ Then run:
 ```PowerShell
 New-BuildReviewCollector
 ```
-Old instruction:
-You should now have a wsus cab file and a ps1 in the root of your %userprofile% folder. You need these both on the system to be audited, note the wsus cab file must be on the root of the C:\ drive; the script can be anywhere.
+
+_Old instruction:_
+_You should now have a wsus cab file and a ps1 in the root of your %userprofile% folder. You need these both on the system to be audited, note the wsus cab file must be on the root of the C:\ drive; the script can be anywhere._
 
 !! The script should now move the cab file to the root of the system drive on it's own. Just perform a quick check before running the next commands !!
 
@@ -38,11 +39,8 @@ Next if you are in the Documents directory:
 ```
 
 
-OR at the path output by the script:
+OR at the path output by the script.
 
-```PowerShell
-./BuildReview.ps1
-```
 
 This script will usually take 5-10 minutes depending on the OS and size of policies.
 
