@@ -1,4 +1,4 @@
-#region Start Build Review
+oip#region Start Build Review
 	#load windows forms for output
 	[System.Reflection.Assembly]::LoadWithPartialName("System.Windows.Forms") | Out-Null
 	
@@ -176,8 +176,8 @@ $SaveResultTo = $ExecutionContext.SessionState.Path.GetUnresolvedProviderPathFro
 $Policy.Save($SaveResultTo)
 New-Item -Path "C:\Results\" -ItemType Directory
 Write-Host "Script Completed!"
-Move-Item '$SaveResultTo' "C:\Results\"
-Write-Host "Results have been saved to '$SaveResultTo'"
 Write-Host "Exporting results as a html file..."
-Export-AsHTML -InputFolder C:\Results\
+Export-AsHTML -InputFolder $env:USERSPORFILE\Desktop
+Move-Item -Path $env:USERSPROFILE\Desktop\*.xml, $env:USERSPROFILE\Desktop\*.html -Destination "C:\Results\"
+Write-Host "Results have been saved to C:\Results\"
 
