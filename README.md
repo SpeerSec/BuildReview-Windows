@@ -28,7 +28,7 @@ To run simply launch PowerShell as an **administrator** then, in the `$env:USERP
 ./BuildReview.ps1
 ```
 
-OR at the path output by the script.
+OR at the path output by the script. This script will usually take 5-10 minutes depending on the OS and size of policies.
 
 In cases where a policy is enforcing the execution policy simply run this instead;
 ```PowerShell
