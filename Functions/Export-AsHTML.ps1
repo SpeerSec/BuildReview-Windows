@@ -30,7 +30,7 @@ param($InputFolder='.\')
 		[xml]$Result = Get-Content $File.FullName
 
         # output raw files
-        $TooloutputFolder = Join-Path -Path (Resolve-Path $env:SYSDRIVE\Results\) -ChildPath 'tool-output'
+        $TooloutputFolder = Join-Path -Path (Resolve-Path $env:SystemDrive\Results\) -ChildPath 'tool-output'
         if(-not (Test-Path $TooloutputFolder))
         {
             New-Item $TooloutputFolder -ItemType Directory | Out-Null
