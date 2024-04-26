@@ -17,7 +17,9 @@ _If you git cloned to Documents:_
 ```PowerShell
 Import-Module "$env:USERPROFILE\Documents\BuildReview-Windows\BuildReview.psd1"
 ```
+---
 
+Then run:
 
 ```PowerShell
 New-BuildReviewCollector
@@ -29,12 +31,20 @@ You should now have a wsus cab file and a ps1 in the root of your %userprofile% 
 
 
 
-To run simply launch PowerShell as an **administrator** then, in the `$env:USERPROFILE` folder, issue:
+Next if you are in the Documents directory:
+
+```PowerShell
+..\BuildReview.ps1
+```
+
+
+OR at the path output by the script:
+
 ```PowerShell
 ./BuildReview.ps1
 ```
 
-OR at the path output by the script. This script will usually take 5-10 minutes depending on the OS and size of policies.
+This script will usually take 5-10 minutes depending on the OS and size of policies.
 
 In cases where a policy is enforcing the execution policy simply run this instead;
 ```PowerShell
