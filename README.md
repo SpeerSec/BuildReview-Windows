@@ -30,7 +30,7 @@ To run simply launch PowerShell as an **administrator** then, in the `$env:USERP
 
 OR at the path output by the script.
 
-In cases were a policy is enforcing the execution policy simply run this instead;
+In cases where a policy is enforcing the execution policy simply run this instead;
 ```PowerShell
 iex [System.IO.File]::ReadAllText('c:\BuildReview.ps1')
 ```
