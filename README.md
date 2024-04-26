@@ -1,7 +1,19 @@
 # Setup
 From a PowerShell window run the following:
+
+You might find the script fails to run even when running as an administrative PowerShell window, issue the following command;
+```PowerShell
+Set-ExecutionPolicy -ExecutionPolicy Bypass -Scope Process -Force
+```
+
+*Process* is used here as it will ensure that after PowerShell is closed the client's security is restored.
+
+
 ```PowerShell
 Import-Module "C:\path\to\root\folder\BuildReview.psd1"
+```
+
+```PowerShell
 New-BuildReviewCollector
 ```
 Old instruction:
@@ -9,12 +21,7 @@ You should now have a wsus cab file and a ps1 in the root of your %userprofile% 
 
 !! The script should now move the cab file to the root of the system drive on it's own. Just perform a quick check before running the next commands !!
 
-# Running the Script
-You might find the script fails to run even when running as an administrative PowerShell window, issue the following command;
-```PowerShell
-Set-ExecutionPolicy -ExecutionPolicy Bypass -Scope Process -Force
-```
-*Process* is used here as it will ensure that after PowerShell is closed the client's security is restored.
+
 
 To run simply launch PowerShell as an **administrator** then issue:
 ```PowerShell
@@ -27,15 +34,15 @@ iex [System.IO.File]::ReadAllText('c:\BuildReview.ps1')
 ```
 
 # Exporting Results
-The XML results for each host will be saved to your desktop, take the XMLs and save in 1 folder on your own machine. Now issue the following command;
-```PowerShell
-Export-AsHTML -InputFolder C:\Results\
-```
-A HTML file will be saved to *C:\Results* and any useful files collected will be stored in the sub directory **tool-output**.
+The XML and HTML results for each host will be saved to `C:\Results\`
+
 
 # Coverage
-It takes a lot of time to check each registry value is correct, I will get to the end eventually.
 
+I can update registries to check depending on the OS. I have updated the current checked registries to include Server 2019, 2022 and Windows 11.
+
+
+From OneLogicalMyth:
 In the meantime ensure you read the raw XML results file generated as you will see blank results for some collections/groups/checks depending on the OS. Additionally, it is recommend each reported issue is verified to ensure accuracy.
 
 In Scope:
