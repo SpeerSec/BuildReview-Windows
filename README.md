@@ -50,7 +50,7 @@ iex [System.IO.File]::ReadAllText('c:\BuildReview.ps1')
 ```
 
 # Exporting Results
-The XML and HTML results for each host will be saved to `C:\Results\`
+The HTML results for each host will be saved to `C:\Results\`
 
 
 # Coverage
