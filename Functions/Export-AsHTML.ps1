@@ -235,7 +235,7 @@ param($InputFolder='.\')
 
 	# complete the HTML file and save to disk
 	$HTML = New-HTML $HTML
-    $HTMLPath = Join-Path (Resolve-Path $InputFolder) "BuildReview-Results-$(get-date -Format D).html"
+    $HTMLPath = Join-Path (Resolve-Path $InputFolder) "BuildReview-Results.html"
     $HTML | Out-File -FilePath $HTMLPath -Encoding ascii -Force
 
 	# move file to tool-output folder to mark it as complete
