@@ -1,7 +1,7 @@
 #region Start Build Review
 	#load windows forms for output
 	[System.Reflection.Assembly]::LoadWithPartialName("System.Windows.Forms") | Out-Null
-	Write-Host "This message confirms the script has started."
+	
 	# Check for admin rights
 	$IsAdmin = (New-Object Security.Principal.WindowsPrincipal ([Security.Principal.WindowsIdentity]::GetCurrent())).IsInRole([Security.Principal.WindowsBuiltinRole]::Administrator)
 	if(-not $IsAdmin)
@@ -17,7 +17,7 @@
 
 	[xml]$Policy = [System.Text.Encoding]::UNICODE.GetString([System.Convert]::FromBase64String($PolicyXML))
 	$Config = $Policy.Policy
-
+	Write-Host "This message confirms initial checks have completed and the script has started."
 	# Check for internet access, for Windows Update
     if(-not $DisableWindowsUpdate)
     {
@@ -154,13 +154,13 @@ $ExportedPolicy = (Join-Path $env:TEMP SecurityPolicy.inf)
 $null = Invoke-Expression "secedit /export /cfg $ExportedPolicy"
 $SecPol = Read-FileToBase64 $ExportedPolicy
 Remove-Item $ExportedPolicy -Force
-
+<#
 Remove-Variable ExportedPolicy
 $ExportedPolicy = (Join-Path $env:TEMP GPResult.html)
 $null = Invoke-Expression "gpresult /H $ExportedPolicy /F"
 $gpresult = Read-FileToBase64 $ExportedPolicy
 Remove-Item $ExportedPolicy -Force
-
+#>
 Remove-Variable ExportedPolicy
 $ExportedPolicy = (Join-Path $env:TEMP auditpol.txt)
 $null = Invoke-Expression "auditpol /get /category:* > $ExportedPolicy"
@@ -174,8 +174,9 @@ $Config.AppendChild($XMLResults) | Out-Null
 # Save output
 $SaveResultTo = $ExecutionContext.SessionState.Path.GetUnresolvedProviderPathFromPSPath($SaveResultTo)
 $Policy.Save($SaveResultTo)
-Net-Item -Path "C:\Results\" -ItemType Directory
+New-Item -Path "C:\Results\" -ItemType Directory
 Write-Host "Script Completed!"
+Move-Item '$SaveResultTo' "C:\Results\"
 Write-Host "Results have been saved to '$SaveResultTo'"
 Write-Host "Exporting results as a html file..."
 Export-AsHTML -InputFolder C:\Results\
