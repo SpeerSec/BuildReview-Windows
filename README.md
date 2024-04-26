@@ -13,6 +13,12 @@ Set-ExecutionPolicy -ExecutionPolicy Bypass -Scope Process -Force
 Import-Module "C:\path\to\root\folder\BuildReview.psd1"
 ```
 
+_If you git cloned to Documents:_
+```PowerShell
+Import-Module "$env:USERPROFILE\Documents\BuildReview-Windows\BuildReview.psd1"
+```
+
+
 ```PowerShell
 New-BuildReviewCollector
 ```
