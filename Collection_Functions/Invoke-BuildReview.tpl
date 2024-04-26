@@ -1,4 +1,4 @@
-oip#region Start Build Review
+#region Start Build Review
 	#load windows forms for output
 	[System.Reflection.Assembly]::LoadWithPartialName("System.Windows.Forms") | Out-Null
 	
