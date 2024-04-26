@@ -177,7 +177,7 @@ $Policy.Save($SaveResultTo)
 New-Item -Path "C:\Results\" -ItemType Directory
 Write-Host "Script Completed!"
 Write-Host "Exporting results as a html file..."
-Export-AsHTML -InputFolder $env:USERSPORFILE\Desktop
-Move-Item -Path $env:USERSPROFILE\Desktop\*.xml, $env:USERSPROFILE\Desktop\*.html -Destination "C:\Results\"
+Export-AsHTML -InputFolder $env:USERPORFILE\Desktop
+Move-Item -Path $env:USERPROFILE\Desktop\*.xml, $env:USERPROFILE\Desktop\*.html -Destination "C:\Results\"
 Write-Host "Results have been saved to C:\Results\"
 
